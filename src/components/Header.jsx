@@ -50,7 +50,7 @@ export function Header({ stats, activeView, setActiveView }) {
           </span>
         </div>
 
-        <div className="-mx-4 flex gap-1 overflow-x-auto px-4">
+        <div className="-mx-4 flex gap-1 overflow-x-auto px-4 hide-scrollbar">
           {tabs.map(tab => (
             <button
               key={tab.id}
