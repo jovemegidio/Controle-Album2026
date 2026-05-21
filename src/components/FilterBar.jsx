@@ -23,7 +23,7 @@ export function FilterBar({ filter, setFilter, confFilter, setConfFilter, search
         />
       </label>
 
-      <div className="flex gap-2 overflow-x-auto pb-1" role="tablist" aria-label="Status das figurinhas">
+      <div className="flex gap-2 overflow-x-auto pb-1 hide-scrollbar" role="tablist" aria-label="Status das figurinhas">
         {STATUS_FILTERS.map(item => (
           <button
             key={item.id}
@@ -41,7 +41,7 @@ export function FilterBar({ filter, setFilter, confFilter, setConfFilter, search
         ))}
       </div>
 
-      <div className="flex gap-2 overflow-x-auto pb-1" role="tablist" aria-label="Confederacoes">
+      <div className="flex gap-2 overflow-x-auto pb-1 hide-scrollbar" role="tablist" aria-label="Confederacoes">
         <button
           onClick={() => setConfFilter('all')}
           className={[

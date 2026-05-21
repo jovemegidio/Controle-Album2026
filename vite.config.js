@@ -4,4 +4,8 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   base: '/Controle-Album2026/',
+  build: {
+    target: 'esnext',
+    minify: 'esbuild',
+  },
 })
