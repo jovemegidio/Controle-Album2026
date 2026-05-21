@@ -2,9 +2,35 @@ import React from 'react'
 import { Icon } from './Icon'
 import { getStickerImage } from '../data/stickerImages'
 
+// Cores por tipo de figurinha (similar ao estilo Panini)
+const getTypeColor = (label, teamCode) => {
+  const lowerLabel = label?.toLowerCase() || ''
+  if (lowerLabel.includes('escudo') || lowerLabel.includes('emblema') || lowerLabel.includes('badge')) {
+    return 'from-amber-600 to-amber-800' // Escudos - dourado
+  }
+  if (lowerLabel.includes('time') || lowerLabel.includes('equipe') || lowerLabel.includes('team')) {
+    return 'from-indigo-600 to-indigo-800' // Foto do time - azul
+  }
+  if (lowerLabel.includes('logo') || lowerLabel.includes('panini')) {
+    return 'from-red-600 to-red-800' // Logo Panini - vermelho
+  }
+  if (lowerLabel.includes('mascote')) {
+    return 'from-green-600 to-green-800' // Mascote - verde
+  }
+  if (lowerLabel.includes('troféu') || lowerLabel.includes('trophy')) {
+    return 'from-yellow-500 to-yellow-700' // Troféu - dourado
+  }
+  if (lowerLabel.includes('estádio') || lowerLabel.includes('stadium')) {
+    return 'from-cyan-600 to-cyan-800' // Estádios - ciano
+  }
+  // Jogadores - cor baseada no código do time
+  return 'from-slate-600 to-slate-800'
+}
+
 export function StickerCard({ sticker, count, onIncrement, onDecrement }) {
   const status = count === 0 ? 'missing' : count === 1 ? 'have' : 'duplicate'
-  const imageUrl = getStickerImage(sticker.imageKey)
+  const imageUrl = getStickerImage(sticker.imageKey, sticker.num)
+  const typeGradient = getTypeColor(sticker.label, sticker.teamCode)
 
   const cardClass = [
     'sticker-card',
@@ -35,10 +61,9 @@ export function StickerCard({ sticker, count, onIncrement, onDecrement }) {
           src={imageUrl}
         />
       ) : (
-        <span className="flex h-full w-full flex-col items-center justify-center gap-1 px-1 text-center">
-          <span className="text-[10px] font-bold leading-none opacity-70">{sticker.num}</span>
-          <Icon name={sticker.shiny ? 'star' : 'image'} className="h-4 w-4 opacity-60" />
-          <span className="sticker-label max-w-full text-[9px] leading-tight text-gray-300">
+        <span className={`flex h-full w-full flex-col items-center justify-center gap-0.5 px-1 text-center bg-gradient-to-br ${status === 'missing' ? 'from-gray-800 to-gray-900' : typeGradient}`}>
+          <span className="text-2xl font-black leading-none text-white/90">{sticker.num}</span>
+          <span className="sticker-label max-w-full text-[8px] font-medium leading-tight text-white/70 mt-1">
             {sticker.label}
           </span>
         </span>
