@@ -33,7 +33,7 @@ export function ExchangeList({ exchangeList }) {
     Object.values(byTeam).forEach(({ teamName, stickers }) => {
       lines.push(teamName)
       stickers.forEach(sticker => {
-        lines.push(`  ${sticker.teamCode}-${sticker.num} ${sticker.label}${sticker.extras > 1 ? ` (x${sticker.extras})` : ''}`)
+        lines.push(`  ${sticker.num} ${sticker.label}${sticker.extras > 1 ? ` (x${sticker.extras})` : ''}`)
       })
       lines.push('')
     })
@@ -76,7 +76,7 @@ export function ExchangeList({ exchangeList }) {
                   key={sticker.id}
                   className="flex items-center gap-1.5 rounded-md border border-blue-700/50 bg-blue-900/40 px-2.5 py-1.5 text-xs"
                 >
-                  <span className="font-bold text-blue-300">{code}-{sticker.num}</span>
+                  <span className="font-bold text-blue-300">{sticker.num}</span>
                   <span className="text-gray-300">{sticker.label}</span>
                   {sticker.extras > 1 && (
                     <span className="rounded-full bg-blue-500 px-1.5 text-[10px] font-bold text-white">

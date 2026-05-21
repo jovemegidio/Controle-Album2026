@@ -61,9 +61,8 @@ export function StickerCard({ sticker, count, onIncrement, onDecrement }) {
           src={imageUrl}
         />
       ) : (
-        <span className={`flex h-full w-full flex-col items-center justify-center gap-0.5 px-1 text-center bg-gradient-to-br ${status === 'missing' ? 'from-gray-800 to-gray-900' : typeGradient}`}>
-          <span className="text-2xl font-black leading-none text-white/90">{sticker.num}</span>
-          <span className="sticker-label max-w-full text-[8px] font-medium leading-tight text-white/70 mt-1">
+        <span className={`flex h-full w-full flex-col items-center justify-center gap-0.5 px-1 pt-4 text-center bg-gradient-to-br ${status === 'missing' ? 'from-gray-800 to-gray-900' : typeGradient}`}>
+          <span className="sticker-label max-w-full text-[9px] font-medium leading-tight text-white/80">
             {sticker.label}
           </span>
         </span>

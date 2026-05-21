@@ -9,7 +9,7 @@ export function TeamSection({ team, getCount, increment, decrement, filter }) {
 
   const stickers = team.stickers.filter(sticker => {
     if (filter === 'all') return true
-    const count = getCount(`${team.code}-${sticker.num}`)
+    const count = getCount(sticker.num)
     if (filter === 'missing') return count === 0
     if (filter === 'have') return count >= 1
     if (filter === 'duplicate') return count >= 2
@@ -19,7 +19,7 @@ export function TeamSection({ team, getCount, increment, decrement, filter }) {
   if (stickers.length === 0) return null
 
   const total = team.stickers.length
-  const have = team.stickers.filter(sticker => getCount(`${team.code}-${sticker.num}`) >= 1).length
+  const have = team.stickers.filter(sticker => getCount(sticker.num) >= 1).length
   const pct = Math.round((have / total) * 100)
   const confColor = CONFEDERATIONS[team.confederation]?.color ?? '#6b7280'
 
@@ -66,11 +66,11 @@ export function TeamSection({ team, getCount, increment, decrement, filter }) {
       {!collapsed && (
         <div className="grid gap-1.5" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(64px, 1fr))' }}>
           {stickers.map(sticker => {
-            const id = `${team.code}-${sticker.num}`
+            const id = sticker.num
             return (
               <StickerCard
                 key={id}
-                sticker={{ ...sticker, id, imageKey: `${team.code}-${sticker.num}` }}
+                sticker={{ ...sticker, id, imageKey: sticker.num }}
                 count={getCount(id)}
                 onIncrement={() => increment(id)}
                 onDecrement={() => decrement(id)}
